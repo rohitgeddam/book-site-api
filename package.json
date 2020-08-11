@@ -19,6 +19,7 @@
     "passport-jwt": "^4.0.0"
   },
   "scripts": {
-    "start": "nodemon node app.js"
+    "dev": "NODE_ENV=development nodemon node app.js",
+    "start": "node app.js"
   }
 }
