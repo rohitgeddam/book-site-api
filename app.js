@@ -3,8 +3,9 @@ if(process.env.NODE_ENV="development"){
 }
 const express = require('express')
 const app = express()
+var cors = require('cors')
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || process.env.SERVER_PORT || 4000
 
 // custom middlewares
 const authenticate = require("./auth/config");
@@ -17,6 +18,13 @@ const userRouter = require('./routes/userRouter')
 //middleware
 app.use(express.json())
 app.use(express.urlencoded()) 
+app.use(cors())
+
+// simualte actual api call
+app.use((req,res,next) => {
+  setInterval(()=> next(),800)
+})
+
 mongoose.connect(process.env.MONGO_STRING, {useNewUrlParser: true})
 .then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err))
