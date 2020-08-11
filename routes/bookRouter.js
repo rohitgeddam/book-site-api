@@ -39,7 +39,7 @@ router.post('/new',authenticate,function(req,res){
   
 })
 
-router.get('/',authenticate,function(req,res){
+router.get('/',function(req,res){
     // get all books;
     Book.find(function(err,books){
         if(err) return res.json(err)
